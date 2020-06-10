@@ -1,0 +1,85 @@
+<!-- Button trigger modal -->
+<button id='createNewUser' type="button" class="d-none btn btn-primary" data-toggle="modal" data-target="#staticBackdrop">
+    Launch static backdrop modal
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog"
+    aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl modal-dialog-centered">
+        <div class="modal-content">
+            <!-- header -->
+            <div class="modal-header border-0 s-dark-bg rounded-top shadow-sm d-flex align-items-center p-4">
+                <p *ngIf='mood != "update"' class="modal-title s-supp-cr-1 m-auto h2" id="staticBackdropLabel" [textContent]='mood == "create" ? "Create New Contact" : "Contact Info"'></p>
+                <p *ngIf='mood == "update"' class="modal-title s-supp-cr-1 m-auto h2" id="staticBackdropLabel" [textContent]='"Update " + selectedContact.Full_name + " info"'></p>
+            </div>
+            <!-- body -->
+            <div class="modal-body s-dark2-bg">
+            <div class='container'>
+                <div class='row'>
+                    <div class='col py-5'>
+                        <form action="">
+                            <!--  full name Inp -->
+                            <div class="input-group mb-3">
+                                <i disabled class="s-icon-btn s-icon-user s-no-rounded-right s-dark-bg rounded-left border-0"></i>
+                                <input [readonly]='mood == "create" || mood == "update" ? false : true' #fullNameInp type="text" name="fullName" placeholder="Full Name..." required
+                                    [value]='selectedContact == null ? "" : selectedContact.Full_name'
+                                    [class.s-supp-bg-1-opt5]='mood == "create" || "update"'
+                                    [class.s-dark2-bg]='mood == "edit"'
+                                    class='form-control p-4 s-supp-cr-1  border-0 rounded-right s-no-rounded-left'>
+                            </div>
+                            <!--  Phone Number Inp -->
+                            <div class="input-group mb-3">
+                                <i disabled class="s-icon-btn s-icon-phone s-no-rounded-right s-dark-bg rounded-left border-0"></i>
+                                <input [readonly]='mood == "create" || mood == "update" ? false : true' id='phoneNUMBER' #phoneNumberInp type="number" name="phoneNumber" placeholder="Phone Number..." required
+                                    [value]='selectedContact == null ? "" : selectedContact.Phone_number'
+                                    [class.s-supp-bg-1-opt5]='mood == "create" || "update"'
+                                    [class.s-dark2-bg]='mood == "edit"'
+                                    class='form-control p-4 s-supp-cr-1 border-0 rounded-right s-no-rounded-left'>
+                            </div>
+                            <!-- Address Inp -->
+                            <div class="input-group mb-3">
+                                <i disabled
+                                    class="s-icon-btn s-icon-address s-no-rounded-right s-dark-bg rounded-left border-0"></i>
+                                <input [readonly]='mood == "create"  || mood == "update" ? false : true' id='addressINP' #addressInp type="text" name="address" placeholder="Address..." required
+                                    [value]='selectedContact == null ? "" : selectedContact.Address'
+                                    [class.s-supp-bg-1-opt5]='mood == "create" || "update"'
+                                    [class.s-dark2-bg]='mood == "edit"'
+                                    class='form-control p-4 s-supp-cr-1 border-0 rounded-right s-no-rounded-left'>
+                            </div>
+                            <!-- notes textarea -->
+                            <div class="input-group rounded mb-3">
+                                <i disabled class="s-icon-btn s-icon-notes s-no-rounded-right s-dark-bg border-0 rounded-left"></i>
+                                <textarea [readonly]='mood == "create"  || mood == "update" ? false : true' id='notesINP' #notesInp name='notes'
+                                    [value]='selectedContact == null ? "" : selectedContact.Notes'
+                                    [class.s-supp-bg-1-opt5]='mood == "create" || "update"'
+                                    [class.s-dark2-bg]='mood == "edit"'
+                                    class="form-control p-4 border-0 rounded-right s-no-rounded-left"
+                                    placeholder="Notes...">
+                                </textarea>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            </div>
+            <!-- footers -->
+            <div class="modal-footer s-dark-bg border-0">
+                <!-- Close -->
+                <button (click)='refreshInps()' type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <!-- Save -->
+                <button *ngIf='mood == "create"'
+                    (click)='postContact(fullNameInp.value, phoneNumberInp.value, addressInp.value, notesInp.value)'
+                 type="button" class="btn text-white bg-primary px-5" data-dismiss="modal">Save</button>
+                 <!-- Edit -->
+                <button *ngIf='mood == "edit"'
+                    (click)='switchMoods("update")'
+                 type="button" class="btn text-white bg-primary px-5">Edit</button>
+                 <!-- Update -->
+                <button *ngIf='mood == "update"'
+                    (click)='updateContact(selectedContact._id, fullNameInp.value, phoneNumberInp.value, addressInp.value, notesInp.value)'
+                 type="button" class="btn text-white bg-primary px-5" data-dismiss="modal">Update</button>
+            </div>
+        </div>
+    </div>
+</div>

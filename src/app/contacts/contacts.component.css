@@ -1,0 +1,10 @@
+
+.s-save-btn{
+    transition: all ease-in-out .2s;
+}
+.s-save-btn:hover{
+  background-color:#34c254!important;
+}
+.s-holder{
+  height: 500px;
+}

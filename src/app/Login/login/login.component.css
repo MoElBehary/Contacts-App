@@ -1,0 +1,12 @@
+.s-icon-btn{
+    width: 60px;
+    background-size: 25px;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+.s-icon-user{
+     background-image: url('/assets/icons/user.png');
+}
+.s-icon-pass{
+     background-image: url('/assets/icons/pass.png');
+}

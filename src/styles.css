@@ -1,0 +1,49 @@
+/* You can add global styles to this file, and also import other style files */
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+/* bg-colors */
+.s-main-bg{
+    background-color: #9870E4!important
+}
+.s-supp-bg-1-opt5{
+    background-color: #2A2A2A !important
+}
+.s-dark-bg{ /*Black*/
+    background-color: #222222 !important;
+}
+.s-dark2-bg{
+    background-color: rgb(36, 36, 36) !important;
+}
+/* colors */
+.s-main-cr{
+    color: #9870E4!important
+}
+.s-supp-cr-1{ /*Gray-1*/
+    color: #989B9B !important;
+}
+.s-dark-cr{ /*Black*/
+    color: #222222 !important;
+}
+/* settings */
+.s-temp-btn{
+    height: 48px;
+}
+.s-no-outline{
+    outline: none;
+}
+.s-no-rounded-right{
+    border-top-right-radius: 0 !important;
+    border-bottom-right-radius: 0 !important;
+}
+.s-no-rounded-left{
+    border-top-left-radius: 0 !important;
+    border-bottom-left-radius: 0 !important;
+}
+textarea {
+    resize: none;
+    -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+    -moz-box-sizing: border-box;    /* Firefox, other Gecko */
+    box-sizing: border-box;         /* Opera/IE 8+ */
+}

@@ -1,0 +1,61 @@
+<app-tool-bar></app-tool-bar>
+<!-- view -->
+<div *ngIf='isLoaded' class='container pt-5'>
+    <div class='row'>
+        <div class='col s-holder'>
+            <table *ngIf='contactsService.contacts.length != 0' class='table '>
+                <thead>
+                    <tr>
+                        <th>Index</th>
+                        <th>Name</th>
+                        <th>Phone</th>
+                        <th>More</th>
+                        <th>Delete</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor='let contact of contactsService.contacts let i = index'>
+                        <td>{{i+1}}</td>
+                        <td>{{contact.Full_name}}</td>
+                        <td>{{contact.Phone_number}}</td>
+                        <td><button (click)='moreData(contact._id)' class='btn bg-primary text-white'>More...</button></td>
+                        <td><button (click)='currentContact(contact._id, i)' data-toggle="modal" data-target="#delMod" class='btn bg-danger text-white'>Delete</button></td>
+                    </tr>
+                </tbody>
+            </table>
+            <!-- if 0 contacts -->
+            <h1 class='text-center s-supp-cr-1 mt-5' *ngIf='contactsService.contacts.length == 0'>There Is no contacts yet!</h1>
+        </div>
+    </div>
+</div>
+<!-- Pagination -->
+<div class='container d-flex justify-content-center align-items-center'>
+    <nav aria-label="Page navigation example">
+        <ul *ngIf='isLoaded' class="pagination">
+            <li class="page-item"><button class="page-link" [disabled]='!prev' (click)='getContacts(prev)'>Previous</button></li>
+            <li *ngFor='let page of pagesArr(contactsService.pages) let i = index' class="page-item"><button class="page-link" (click)='getContacts(i+1)'>{{i+1}}</button></li>
+            <li class="page-item"><button class="page-link" [disabled]='!next' (click)='getContacts(next)'>Next</button></li>
+        </ul>
+    </nav>
+</div>
+<div class='container'>
+    <!-- add contact -->
+    <div class="input-group">
+        <button (click)='openCreateNewContactModal()'
+            class='s-save-btn btn w-100 px-5 s-temp-btn border-0 bg-success text-white rounded'>+</button>
+    </div>
+</div>
+<!-- delete Modal -->
+<div id='delMod' class="modal" tabindex="-1" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-body">
+                <p class='lead text-center'>Do you realy want to delete this ?</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button  (click)='deleteContact(currentCont.id, currentCont.index)' type="button" class="btn btn-primary" data-dismiss="modal">Delete</button>
+            </div>
+        </div>
+    </div>
+</div>
